@@ -50,7 +50,11 @@ def consultar(cpf):
   return resultado
 
 app = Flask(__name__)
-@app.route("/")
-def busca():
-    return "Welow hord"
-app.run(host="0.0.0.0")
+@app.route("/cpf/<cpf>", methods=["GET"])
+def busca(cpf):
+    try:
+        a = consultar(cpf=cpf)
+    except:
+        a = "cpf erro"
+    return a
+app.run(host="0.0.0.0",port=5000,debug=True)
